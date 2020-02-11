@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 
-import "./people-page.css";
 import ItemList from "../item-list";
 import PersonDetails from "../person-details";
 import ErrorIndicator from "../error-indicator";
 
+import "./people-page.css";
+
+import SwapiService from "../../services/swapi-service";
+
 export default class PeoplePage extends Component {
+  swapiService = new SwapiService();
+
   state = {
-    selectedPerson: null,
+    selectedPerson: 3,
     hasError: false
   };
 
@@ -15,8 +20,8 @@ export default class PeoplePage extends Component {
     this.setState({ hasError: true });
   }
 
-  onPersonSelected = id => {
-    this.setState({ selectedPerson: id });
+  onPersonSelected = selectedPerson => {
+    this.setState({ selectedPerson });
   };
   // TODO: добавить <Spinner />
   render() {
@@ -24,14 +29,16 @@ export default class PeoplePage extends Component {
       return <ErrorIndicator />;
     }
 
-    const { selectedPerson } = this.state;
     return (
       <div className="row mb2">
         <div className="col-md-6">
-          <ItemList onItemSelected={this.onPersonSelected} />
+          <ItemList
+            onItemSelected={this.onPersonSelected}
+            getData={this.swapiService.getAllPeople}
+          />
         </div>
         <div className="col-md-6">
-          <PersonDetails personId={selectedPerson} />
+          <PersonDetails personId={this.state.selectedPerson} />
         </div>
       </div>
     );

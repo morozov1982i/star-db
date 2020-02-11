@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import './starship-details.css';
+import "./starship-details.css";
 
 const StarshipDetails = () => {
-    return (
-        <div>StarshipDetails</div>
-    )
-}
+  return <div>StarshipDetails</div>;
+};
 
 export default StarshipDetails;

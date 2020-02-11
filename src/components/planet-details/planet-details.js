@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import './planet-details.css';
+import "./planet-details.css";
 
 const PlanetDetails = () => {
-    return (
-        <div>PlanetDetails</div>
-    )
-}
+  return <div>PlanetDetails</div>;
+};
 
 export default PlanetDetails;
